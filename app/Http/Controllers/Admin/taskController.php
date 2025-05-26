@@ -4,15 +4,20 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use app\Models\Project;
-use app\Models\Task;
-use app\Models\User;
+use App\Models\Project;
+use App\Models\Task;
+use App\Models\User;
 class TaskController extends Controller
 {
+    public function index(Project $project)
+    {
+        $tasks = Task::all();
+        return view('admin/Pages/task/listTask', compact('tasks'));
+    }
     public function create(Project $project)
     {
         $users = User::all();
-        return view('tasks.create', compact('project', 'users'));
+        return view('admin/Pages/task/addTask', compact('project', 'users'));
     }
 
     public function store(Request $request, Project $project)
@@ -24,7 +29,7 @@ class TaskController extends Controller
     public function edit(Project $project, Task $task)
     {
         $users = User::all();
-        return view('tasks.edit', compact('task', 'users', 'project'));
+        return view('admin/Pages/task/editTask', compact('task', 'users', 'project'));
     }
 
     public function update(Request $request, Project $project, Task $task)

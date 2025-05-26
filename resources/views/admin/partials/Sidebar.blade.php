@@ -38,16 +38,16 @@
                 <div class="collapse" data-bs-parent="#sidebarNav" id="emails">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="" class="nav-link">Projcets</a>
+                            <a href="{{ route('projects.index') }}" class="nav-link">Projcets</a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">Add Projcets</a>
+                            <a href="{{ route('projects.create') }}" class="nav-link">Add Projcets</a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('tasks.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="message-square"></i>
                     <span class="link-title">Task</span>
                 </a>
