@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('project_id');
-            $table->string('title');
+            $table->string('name');
             $table->text('description')->nullable();
+            $table->unsignedBigInteger('project');
             $table->unsignedBigInteger('assigned_to');
             $table->enum('priority', ['low', 'medium', 'high', 'urgent'])->default('medium');
             $table->enum('status', ['to_do', 'in_progress', 'review', 'done'])->default('to_do');

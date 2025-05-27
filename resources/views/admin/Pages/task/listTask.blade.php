@@ -23,6 +23,7 @@
                                     <th>ID</th>
                                     <th>Project Title</th>
                                     <th>Description</th>
+                                    <th>Project</th>
                                     <th>Employee</th>
                                     <th>Deadline</th>
                                     <th>Status</th>
@@ -35,13 +36,20 @@
                                     <td>{{ $task->id }}</td>
                                     <td>{{ $task->name }}</td>
                                     <td>{{ $task->description }}</td>
-                                    <td>{{ $task->created_by }}</td>
-                                    <td>{{ $task->deadline }}</td>
-                                    <td>
-                                        @if ($task->status == 'active')
-                                        <i data-feather="zap" style="color: grey;"></i>
+                                    <td>{{ $task->project->name }}</td>
+                                    <td>{{ $task->assigned_to }}</td>
+                                    <td>{{ $task->due_date }}</td>
+                                     <td>
+                                        @if ($task->status == 'to_do')
+                                        <span class="badge bg-warning text-white">To Do</span>
+                                        @elseif ($task->status == 'in_progress')
+                                        <span class="badge bg-danger">In Progress</span>
+                                        @elseif ($task->status == 'review')
+                                        <span class="badge bg-orange text-white">Review</span>
+                                        @elseif ($task->status == 'done')
+                                        <span class="badge bg-success">Done</span>
                                         @else
-                                        <i data-feather="zap-off" style="color: grey;"></i>
+                                        <span class="badge bg-secondary">Unknown</span>
                                         @endif
                                     </td>
                                     <td>{{ $task->created_at->format('Y-m-d') }}</td>

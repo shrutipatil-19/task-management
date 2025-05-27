@@ -9,7 +9,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::withCount('tasks')->get();
+        $projects = Project::get();
         return view('admin/Pages/Project/listProject', compact('projects'));
     }
 
