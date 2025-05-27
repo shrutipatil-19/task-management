@@ -55,7 +55,7 @@
                             <label>Project name</label>
                             <select name="project" class="form-control select2" multiple>
                                 @foreach ($projects as $project)
-                                <option value="{{ $project->name }}">{{ $project->name }}</option>
+                                <option value="{{ $project->id }}">{{ $project->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -64,7 +64,7 @@
                             <label>Assigned To</label>
                             <select name="assigned_to" class="form-control select2" multiple>
                                 @foreach ($users as $user)
-                                <option value="{{ $user->name }}">{{ $user->name }}</option>
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -117,9 +117,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
