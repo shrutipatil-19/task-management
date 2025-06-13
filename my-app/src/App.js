@@ -4,7 +4,7 @@ function App() {
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/hello')
+    fetch('http://localhost:8000/task-management/api/hello')
       .then(res => res.json())
       .then(data => setMsg(data.message));
   }, []);
