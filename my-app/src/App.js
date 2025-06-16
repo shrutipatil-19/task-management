@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react'; // ✅ Required for useState/useEffect
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home';
+import About from './Pages/About';
 
 function App() {
-  const [msg, setMsg] = useState('');
-
-  useEffect(() => {
-    fetch('http://localhost:8000/task-management/api/hello')
-      .then(res => res.json())
-      .then(data => setMsg(data.message));
-  }, []);
-
+ 
   return (
-    <div>
-      <h1>{msg}</h1>
-    </div>
+    <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+    </Router>
   );
 }
 
