@@ -3,6 +3,9 @@
 use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\RegisterController;
+
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
