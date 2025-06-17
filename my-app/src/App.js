@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Dashboard from './Pages/Dashboard';
 import AddTask from './Pages/Task/AddTask';
 import Register from './Pages/login/Register';
+import Login from './Pages/login/Login';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
         {/* Routes WITHOUT layout */}
         <Route path="/register" element={<Register />} />
+         <Route path="/login" element={<Login />} />
 
         {/* Routes WITH layout */}
         <Route path="*" element={
