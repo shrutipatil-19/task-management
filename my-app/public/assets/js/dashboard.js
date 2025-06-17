@@ -530,3 +530,5 @@
 
 
 })();
+
+console.log('js load');

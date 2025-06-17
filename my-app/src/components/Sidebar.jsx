@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Sidebar = () => {
     return (
         <nav className="sidebar">
             <div className="sidebar-header">
@@ -17,29 +18,29 @@ const Header = () => {
                 <ul className="nav" id="sidebarNav">
                     <li className="nav-item nav-category">Main</li>
                     <li className="nav-item">
-                        <a href="dashboard.html" className="nav-link">
+                        <Link to="/" className="nav-link">
                             <i className="link-icon" data-feather="box"></i>
                             <span className="link-title">Dashboard</span>
-                        </a>
+                        </Link>
                     </li>
-                    <li className="nav-item nav-category">web apps</li>
+                    <li className="nav-item nav-category">Tasks</li>
                     <li className="nav-item">
                         <a className="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
                             <i className="link-icon" data-feather="mail"></i>
-                            <span className="link-title">Email</span>
+                            <span className="link-title">Assigned Task</span>
                             <i className="link-arrow" data-feather="chevron-down"></i>
                         </a>
                         <div className="collapse" data-bs-parent="#sidebarNav" id="emails">
                             <ul className="nav sub-menu">
                                 <li className="nav-item">
-                                    <a href="pages/email/inbox.html" className="nav-link">Inbox</a>
+                                    <Link to="/add-task" className="nav-link">Create Task</Link>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a href="pages/email/read.html" className="nav-link">Read</a>
                                 </li>
                                 <li className="nav-item">
                                     <a href="pages/email/compose.html" className="nav-link">Compose</a>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </li>
@@ -56,7 +57,7 @@ const Header = () => {
                         </a>
                     </li>
                     <li className="nav-item nav-category">Components</li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <a className="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">
                             <i className="link-icon" data-feather="feather"></i>
                             <span className="link-title">UI Kit</span>
@@ -135,7 +136,7 @@ const Header = () => {
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> */}
                     <li className="nav-item">
                         <a className="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false" aria-controls="advancedUI">
                             <i className="link-icon" data-feather="anchor"></i>
@@ -323,4 +324,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Sidebar;
