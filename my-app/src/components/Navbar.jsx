@@ -1,6 +1,35 @@
-import React from "react";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            const token = localStorage.getItem("token");
+            console.log("Token in localStorage:", token);
+
+            if (!token) {
+                console.warn("No token found. User probably not logged in.");
+                return;
+            }
+
+            try {
+                const res = await axios.get('http://localhost/task-management/api/user-info', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                console.log("User Info API Response:", res.data);
+                setUser(res.data.user);
+            } catch (err) {
+                console.error('Error fetching user info:', err.response?.data || err.message);
+            }
+        };
+
+        fetchUserInfo();
+    }, []);
     return (
         <nav className="navbar">
             <div className="navbar-content">
@@ -119,8 +148,16 @@ const Navbar = () => {
                                     </div>
                                     <div className="d-flex justify-content-between flex-grow-1">
                                         <div className="me-4">
-                                            <p>Amiah Burton</p>
-                                            <p className="fs-12px text-secondary">Project deatline</p>
+                                            <>
+                                                {!user ? (
+                                                    <p>Loading user info...</p>
+                                                ) : (
+                                                    <>
+                                                        <p className="fs-16px fw-bolder">{user.name}</p>
+                                                        <p className="fs-12px text-secondary">{user.email}</p>
+                                                    </>
+                                                )}
+                                            </>
                                         </div>
                                         <p className="fs-12px text-secondary">2 hrs ago</p>
                                     </div>
@@ -217,8 +254,16 @@ const Navbar = () => {
                                     <img className="w-80px h-80px rounded-circle" src="https://via.placeholder.com/80x80" alt="" />
                                 </div>
                                 <div className="text-center">
-                                    <p className="fs-16px fw-bolder">Amiah Burton</p>
-                                    <p className="fs-12px text-secondary">amiahburton@gmail.com</p>
+                                    <>
+                                        {!user ? (
+                                            <p>Loading user info...</p>
+                                        ) : (
+                                            <>
+                                                <p className="fs-16px fw-bolder">{user.name}</p>
+                                                <p className="fs-12px text-secondary">{user.email}</p>
+                                            </>
+                                        )}
+                                    </>
                                 </div>
                             </div>
                             <ul className="list-unstyled p-1">

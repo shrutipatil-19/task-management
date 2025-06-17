@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
@@ -9,6 +10,7 @@ const Register = () => {
         password: "",
         confirmPassword: "",
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -21,7 +23,6 @@ const Register = () => {
             alert("Passwords do not match");
             return;
         }
-
         try {
             const res = await axios.post("http://localhost/task-management/api/register", {
                 name: form.name,
@@ -31,7 +32,7 @@ const Register = () => {
             });
 
             alert("User registered!");
-            console.log(res.data);
+            navigate("/login", { replace: true });
         } catch (err) {
             console.error(err);
             alert("Registration failed.");

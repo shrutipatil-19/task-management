@@ -21,15 +21,18 @@ return Application::configure(basePath: dirname(__DIR__))
         api: __DIR__ . '/../routes/api.php',
         health: '/up',
     )
-
-    // Middleware aliases
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->append([
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        ]);
+
         $middleware->alias([
-            'admin' => AdminMiddleware::class,
-            'web' => LogVisit::class,
+            'admin'    => AdminMiddleware::class,
+            'web'      => LogVisit::class,
             'language' => LanguageMiddleware::class,
         ]);
     })
+
 
     // Exception handling (optional customization)
     ->withExceptions(function (Exceptions $exceptions) {
