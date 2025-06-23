@@ -11,20 +11,23 @@ const Login = () => {
         setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await axios.post("http://localhost/task-management/api/login", {
-                email: form.email,
-                password: form.password,
-            });
-            console.log(res.data);
-            navigate("/", { replace: true });
-        } catch (err) {
-            console.error(err.response?.data);
-            alert("Login failed: " + (err.response?.data?.message || "Unknown error"));
-        }
-    };
+   const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const res = await axios.post("http://localhost/task-management/api/login", {
+            email: form.email,
+            password: form.password,
+        });
+
+        const token = res.data.token;
+        localStorage.setItem("token", token); // ✅ Save token
+
+        navigate("/dashboard", { replace: true }); // ✅ Redirect after login
+    } catch (err) {
+        console.error(err.response?.data);
+        alert("Login failed: " + (err.response?.data?.message || "Unknown error"));
+    }
+};
 
     return (
         <div className="container mt-5">

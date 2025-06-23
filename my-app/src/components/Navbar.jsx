@@ -7,7 +7,6 @@ const Navbar = () => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             const token = localStorage.getItem("token");
-            console.log("Token in localStorage:", token);
 
             if (!token) {
                 console.warn("No token found. User probably not logged in.");
@@ -15,18 +14,18 @@ const Navbar = () => {
             }
 
             try {
-                const res = await axios.get('http://localhost/task-management/api/user-info', {
+                const res = await axios.get("http://localhost/task-management/api/user-info", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
 
-                console.log("User Info API Response:", res.data);
-                setUser(res.data.user);
+                setUser(res.data.user); // Make sure the API returns { user: {...} }
             } catch (err) {
                 console.error('Error fetching user info:', err.response?.data || err.message);
             }
         };
+
 
         fetchUserInfo();
     }, []);
